@@ -1,0 +1,66 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap");
+
+@theme {
+  --font-headline: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --color-background:                #0e0e13;
+  --color-surface:                   #0e0e13;
+  --color-surface-dim:               #0e0e13;
+  --color-surface-bright:            #2c2b33;
+  --color-surface-container-lowest:  #000000;
+  --color-surface-container-low:     #131319;
+  --color-surface-container:         #19191f;
+  --color-surface-container-high:    #1f1f26;
+  --color-surface-container-highest: #25252d;
+  --color-surface-variant:           #25252d;
+
+  --color-on-surface:         #f9f5fd;
+  --color-on-surface-variant: #acaab1;
+  --color-outline:            #76747b;
+  --color-outline-variant:    #48474d;
+
+  --color-primary:           #9effc8;
+  --color-primary-dim:       #00ec9a;
+  --color-on-primary:        #00643e;
+  --color-primary-container: #1dfba5;
+
+  --color-error:     #ff716c;
+  --color-error-dim: #d7383b;
+
+  --radius:     0.125rem;
+  --radius-lg:  0.25rem;
+  --radius-xl:  0.5rem;
+  --radius-2xl: 0.75rem;
+}
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-on-surface);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headline);
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+    user-select: none;
+  }
+}
+
+@layer utilities {
+  .glow-accent {
+    box-shadow: 0 0 20px -5px color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+  .glow-accent-strong {
+    box-shadow: 0 0 30px -5px color-mix(in srgb, var(--color-primary) 60%, transparent);
+  }
+}
