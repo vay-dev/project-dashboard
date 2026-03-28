@@ -33,8 +33,8 @@ export default function TopHeader() {
           <Bell size={18} />
           <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full" />
         </button>
-        <div className="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center">
-          <span className="text-on-primary text-xs font-black font-headline">V</span>
+        <div className="h-9 w-9 rounded-full overflow-hidden border-2 border-primary/30 flex-shrink-0">
+          <img src="/images/me.png" alt="Victor Ayeni" className="w-full h-full object-cover object-top" />
         </div>
       </div>
     </header>

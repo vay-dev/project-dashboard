@@ -30,11 +30,13 @@ export default function Sidebar() {
 
   return (
     <aside className="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-surface-container-low flex flex-col py-6 z-50">
-      <div className="px-8 mb-10">
-        <h1 className="text-3xl font-black text-primary tracking-tighter font-headline">VAY</h1>
-        <p className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-medium mt-1">
-          Admin Console
-        </p>
+      <div className="px-6 mb-10 flex items-center gap-3">
+        <img src="/images/logo.png" alt="VAY logo" className="w-10 h-10 object-contain" />
+        <div>
+          <p className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-medium">
+            Admin Console
+          </p>
+        </div>
       </div>
 
       <nav className="flex-1 space-y-1">

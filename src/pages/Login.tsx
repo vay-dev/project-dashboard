@@ -25,11 +25,11 @@ export default function Login() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Invalid credentials");
+        setError(data.message || "Invalid credentials");
         return;
       }
 
-      login(data.token);
+      login(data.data.token);
       navigate("/");
     } catch {
       setError("Could not reach the server. Is the backend running?");
@@ -51,9 +51,7 @@ export default function Login() {
 
       {/* Header */}
       <header className="fixed top-0 w-full h-16 z-40 flex justify-center items-center px-8">
-        <div className="text-primary text-2xl font-black tracking-tighter font-headline">
-          VAY
-        </div>
+        <img src="/images/logo.png" alt="VAY logo" className="h-9 w-9 object-contain" />
       </header>
 
       {/* Card */}
@@ -62,10 +60,8 @@ export default function Login() {
           {/* top accent */}
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary-dim opacity-50" />
 
-          <div className="mb-10 text-center">
-            <h1 className="font-headline text-primary text-4xl font-extrabold tracking-tighter mb-1">
-              VAY
-            </h1>
+          <div className="mb-10 flex flex-col items-center gap-3">
+            <img src="/images/logo.png" alt="VAY logo" className="h-14 w-14 object-contain" />
             <p className="text-on-surface-variant text-xs tracking-widest uppercase">
               Admin Console
             </p>
