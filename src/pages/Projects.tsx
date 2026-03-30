@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Pencil, Trash2, Star, Rocket, Clock, Archive, MoreHorizontal, EyeOff, Eye } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
+import { apiUrl } from "../lib/api";
 
 interface Project {
   id: string;
@@ -216,7 +217,7 @@ export default function Projects() {
   const [deleting, setDeleting] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/projects/admin", {
+    fetch(apiUrl("/api/projects/admin"), {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((r) => r.json())
@@ -226,7 +227,7 @@ export default function Projects() {
   }, [token]);
 
   async function handleToggleHidden(id: string, currentlyHidden: boolean) {
-    const res = await fetch(`http://localhost:5000/api/projects/${id}/visibility`, {
+    const res = await fetch(apiUrl(`/api/projects/${id}/visibility`), {
       method: "PATCH",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       body: JSON.stringify({ isHidden: !currentlyHidden }),
@@ -242,7 +243,7 @@ export default function Projects() {
     if (!confirm("Delete this project? This cannot be undone.")) return;
     setDeleting(id);
     try {
-      const res = await fetch(`http://localhost:5000/api/projects/${id}`, {
+      const res = await fetch(apiUrl(`/api/projects/${id}`), {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
