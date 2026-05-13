@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+import { tokenStore, setForceLogout } from "../lib/api";
 
 interface AuthContextType {
   token: string | null;
@@ -9,19 +10,21 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [token, setToken] = useState<string | null>(
-    () => localStorage.getItem("vay_admin_token")
-  );
+  const [token, setToken] = useState<string | null>(() => tokenStore.get());
 
   function login(t: string) {
-    localStorage.setItem("vay_admin_token", t);
+    tokenStore.set(t);
     setToken(t);
   }
 
   function logout() {
-    localStorage.removeItem("vay_admin_token");
+    tokenStore.clear();
     setToken(null);
   }
+
+  useEffect(() => {
+    setForceLogout(logout);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ token, login, logout }}>

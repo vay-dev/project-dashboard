@@ -7,6 +7,7 @@ import { apiUrl } from "../lib/api";
 export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -20,7 +21,7 @@ export default function Login() {
       const res = await fetch(apiUrl("/api/auth/login"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
@@ -78,9 +79,11 @@ export default function Login() {
                 <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-outline" />
                 <input
                   type="email"
-                  defaultValue="admin@vay.systems"
-                  readOnly
-                  className="w-full bg-surface-container-lowest border-b border-outline-variant/20 text-on-surface/50 pl-10 py-3 text-sm outline-none cursor-not-allowed"
+                  placeholder="admin@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="w-full bg-surface-container-lowest border-b border-outline-variant/20 focus:border-primary text-on-surface placeholder-outline/50 pl-10 py-3 text-sm outline-none transition-colors"
                 />
               </div>
             </div>
